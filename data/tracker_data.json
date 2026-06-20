@@ -1,0 +1,14 @@
+[
+    {
+        "type": "Income",
+        "amount": 100000.0,
+        "category": "salary",
+        "date": "2026-06-20 10:29"
+    },
+    {
+        "type": "Expense",
+        "amount": 30000.0,
+        "category": "bills",
+        "date": "2026-06-20 10:29"
+    }
+]

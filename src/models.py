@@ -1,0 +1,79 @@
+from abc import ABC, abstractmethod
+from datetime import datetime
+
+class Transaction(ABC):
+    """Abstract Base Class for all financial transactions."""
+    def __init__(self, amount: float, category: str, date: str = None):
+        self._amount = float(amount)  # Encapsulation: Protected attribute
+        self.category = category
+        self.date = date if date else datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    @property
+    def amount(self) -> float:
+        return self._amount
+
+    @abstractmethod
+    def get_details(self) -> str:
+        """Polymorphic method to display transaction strings."""
+        pass
+
+    @abstractmethod
+    def to_dict(self) -> dict:
+        """Converts object details to a dictionary serialization format."""
+        pass
+
+
+class Income(Transaction):
+    """Subclass representing incoming revenue."""
+    def get_details(self) -> str:
+        return f"[INCOME] {self.date} | Category: {self.category} | Amount: +${self.amount:.2f}"
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "Income",
+            "amount": self.amount,
+            "category": self.category,
+            "date": self.date
+        }
+
+
+class Expense(Transaction):
+    """Subclass representing outgoing costs."""
+    def get_details(self) -> str:
+        return f"[EXPENSE] {self.date} | Category: {self.category} | Amount: -${self.amount:.2f}"
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "Expense",
+            "amount": self.amount,
+            "category": self.category,
+            "date": self.date
+        }
+
+
+class BudgetManager:
+    """Manages memory collections of transactions and executes business logic."""
+    def __init__(self):
+        self.transactions = []
+
+    def add_transaction(self, transaction: Transaction):
+        self.transactions.append(transaction)
+
+    def get_total_balance(self) -> float:
+        balance = 0.0
+        for t in self.transactions:
+            if isinstance(t, Income):
+                balance += t.amount
+            elif isinstance(t, Expense):
+                balance -= t.amount
+        return balance
+
+    def get_summary(self) -> dict:
+        summary = {"total_income": 0.0, "total_expense": 0.0, "net_balance": 0.0}
+        for t in self.transactions:
+            if isinstance(t, Income):
+                summary["total_income"] += t.amount
+            elif isinstance(t, Expense):
+                summary["total_expense"] += t.amount
+        summary["net_balance"] = summary["total_income"] - summary["total_expense"]
+        return summary
