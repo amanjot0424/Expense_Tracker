@@ -24,6 +24,7 @@ def main():
         print("5. Save and Terminate Execution")
         print("6. Set Category Budget Limit")
         print("7. Filter Activity Stream by Category")
+        print("8. Export Statement to Text File")
 
         
         choice = input("\nSelect menu option (1-5): ").strip()
@@ -86,6 +87,15 @@ def main():
             else:
                 for tx in filtered_results:
                     print(tx.get_details())
+
+        elif choice == "8":
+            report_path = "data/financial_statement.txt"
+            print(f"\nCompiling statement registers and generating text report...")
+            
+            # Call our brand-new export method
+            StorageEngine.export_text_report(manager, report_path)
+            
+            print(f"Success! Statement exported cleanly to: '{report_path}'")
             
         else:
             print("Action invalid. Please match selection arguments to the explicit indexes provided (1-5).")

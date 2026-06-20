@@ -64,5 +64,23 @@
         "amount": 2300.0,
         "category": "bills",
         "date": "2026-06-20 17:05"
+    },
+    {
+        "type": "Income",
+        "amount": 10000.0,
+        "category": "salart",
+        "date": "2026-06-20 17:14"
+    },
+    {
+        "type": "Expense",
+        "amount": 2000.0,
+        "category": "rent",
+        "date": "2026-06-20 17:14"
+    },
+    {
+        "type": "Expense",
+        "amount": 3000.0,
+        "category": "rent",
+        "date": "2026-06-20 17:14"
     }
 ]
