@@ -22,6 +22,7 @@ def main():
         print("3. View Chronological Activity Stream")
         print("4. View Complete Financial Metrics Matrix")
         print("5. Save and Terminate Execution")
+        print("6. Set Category Budget Limit")
         
         choice = input("\nSelect menu option (1-5): ").strip()
         
@@ -60,6 +61,16 @@ def main():
             StorageEngine.save_data(manager, DATA_FILE)
             print("State persistence complete. Safely terminating runtime environments. Goodbye!")
             sys.exit(0)
+
+        elif choice == "6":
+            # 1. Ask the user which category they want to set a limit for
+            category = get_non_empty_string("Enter the category name (e.g., Food, Clothing): ")
+            
+            # 2. Ask for the maximum budget amount using our validated float function
+            amount = get_validated_float(f"Enter the maximum budget ceiling for '{category}' ($): ")
+            
+            # 3. Pass those variables into your BudgetManager method
+            manager.set_ceilings(category, amount)
             
         else:
             print("Action invalid. Please match selection arguments to the explicit indexes provided (1-5).")

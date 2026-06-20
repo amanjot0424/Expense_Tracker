@@ -3,12 +3,48 @@
         "type": "Income",
         "amount": 100000.0,
         "category": "salary",
-        "date": "2026-06-20 10:29"
+        "date": "2026-06-20 16:53"
     },
     {
         "type": "Expense",
-        "amount": 30000.0,
+        "amount": 1500.0,
+        "category": "food",
+        "date": "2026-06-20 16:53"
+    },
+    {
+        "type": "Expense",
+        "amount": 500.0,
+        "category": "food",
+        "date": "2026-06-20 16:54"
+    },
+    {
+        "type": "Expense",
+        "amount": 100.0,
+        "category": "food",
+        "date": "2026-06-20 16:54"
+    },
+    {
+        "type": "Expense",
+        "amount": 900.0,
         "category": "bills",
-        "date": "2026-06-20 10:29"
+        "date": "2026-06-20 16:55"
+    },
+    {
+        "type": "Expense",
+        "amount": 97000.0,
+        "category": "rent",
+        "date": "2026-06-20 16:55"
+    },
+    {
+        "type": "Expense",
+        "amount": 1.0,
+        "category": "bills",
+        "date": "2026-06-20 16:55"
+    },
+    {
+        "type": "Expense",
+        "amount": 300000.0,
+        "category": "rent",
+        "date": "2026-06-20 16:55"
     }
 ]

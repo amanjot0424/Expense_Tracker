@@ -55,9 +55,29 @@ class BudgetManager:
     """Manages memory collections of transactions and executes business logic."""
     def __init__(self):
         self.transactions = []
+        self.category_ceilings = {}
+
+    def set_ceilings(self,category: str, amount: float):
+        self.category_ceilings[category.lower()] = float(amount)
+        print(f"Ceiling updated: {category} limit is now ${amount:.2f}")
 
     def add_transaction(self, transaction: Transaction):
         self.transactions.append(transaction)
+        if isinstance(transaction, Expense):
+            current_category = transaction.category.lower()
+            if current_category in self.category_ceilings:
+                limit = self.category_ceilings[current_category]
+                
+                # Calculate total expenses for this category
+                total_spent = 0.0
+                for t in self.transactions:
+                    if isinstance(t, Expense) and t.category.lower() == current_category:
+                        total_spent += t.amount
+                
+                # If total spent breaks the limit, trigger the warning!
+                if total_spent > limit:
+                    print(f"\n⚠️  [BUDGET WARNING] You have exceeded the ceiling for '{transaction.category}'!")
+                    print(f"Total Spent: ${total_spent:.2f} | Ceiling Limit: ${limit:.2f}\n")
 
     def get_total_balance(self) -> float:
         balance = 0.0
