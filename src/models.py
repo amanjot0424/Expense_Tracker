@@ -97,3 +97,8 @@ class BudgetManager:
                 summary["total_expense"] += t.amount
         summary["net_balance"] = summary["total_income"] - summary["total_expense"]
         return summary
+    
+    def filter_by_category(self, category_name: str) -> list:
+        """Returns a list of transaction objects matching the target category."""
+        # Loop through self.transactions and pick out items where the categories match
+        return [t for t in self.transactions if t.category.lower() == category_name.lower()]

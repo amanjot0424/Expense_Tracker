@@ -23,6 +23,8 @@ def main():
         print("4. View Complete Financial Metrics Matrix")
         print("5. Save and Terminate Execution")
         print("6. Set Category Budget Limit")
+        print("7. Filter Activity Stream by Category")
+
         
         choice = input("\nSelect menu option (1-5): ").strip()
         
@@ -71,6 +73,19 @@ def main():
             
             # 3. Pass those variables into your BudgetManager method
             manager.set_ceilings(category, amount)
+
+        elif choice == "7":
+            category_target = get_non_empty_string("Enter target category name to search: ")
+            
+            # Call our brand-new filter method
+            filtered_results = manager.filter_by_category(category_target)
+            
+            print(f"\n--- Filtered Logs for Category: '{category_target}' ---")
+            if not filtered_results:
+                print(f"No transactions found matching '{category_target}'.")
+            else:
+                for tx in filtered_results:
+                    print(tx.get_details())
             
         else:
             print("Action invalid. Please match selection arguments to the explicit indexes provided (1-5).")
