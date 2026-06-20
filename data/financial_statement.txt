@@ -1,29 +1,16 @@
 =============================================
         PERSONAL FINANCIAL STATEMENT REPORT
-        Generated on: 2026-06-20 17:14
+        Generated on: 2026-06-20 18:11
 =============================================
 
 --- SUMMARY METRICS ---
-Total Gross Income  : +$210000.00
-Total Gross Expenses: -$409301.00
+Total Gross Income  : +$0.00
+Total Gross Expenses: -$0.00
 ------------------------------
-Net Asset Balance   : $-199301.00
+Net Asset Balance   : $0.00
 
 --- CHRONOLOGICAL LEDGER LOGS ---
-[INCOME] 2026-06-20 16:53 | Category: salary | Amount: +$100000.00
-[EXPENSE] 2026-06-20 16:53 | Category: food | Amount: -$1500.00
-[EXPENSE] 2026-06-20 16:54 | Category: food | Amount: -$500.00
-[EXPENSE] 2026-06-20 16:54 | Category: food | Amount: -$100.00
-[EXPENSE] 2026-06-20 16:55 | Category: bills | Amount: -$900.00
-[EXPENSE] 2026-06-20 16:55 | Category: rent | Amount: -$97000.00
-[EXPENSE] 2026-06-20 16:55 | Category: bills | Amount: -$1.00
-[EXPENSE] 2026-06-20 16:55 | Category: rent | Amount: -$300000.00
-[INCOME] 2026-06-20 17:05 | Category: freelance | Amount: +$100000.00
-[EXPENSE] 2026-06-20 17:05 | Category: food | Amount: -$2000.00
-[EXPENSE] 2026-06-20 17:05 | Category: bills | Amount: -$2300.00
-[INCOME] 2026-06-20 17:14 | Category: salart | Amount: +$10000.00
-[EXPENSE] 2026-06-20 17:14 | Category: rent | Amount: -$2000.00
-[EXPENSE] 2026-06-20 17:14 | Category: rent | Amount: -$3000.00
+No transaction entries logged in this ledger session.
 
 =============================================
             End of Financial Transmission

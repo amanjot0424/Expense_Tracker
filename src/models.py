@@ -102,3 +102,12 @@ class BudgetManager:
         """Returns a list of transaction objects matching the target category."""
         # Loop through self.transactions and pick out items where the categories match
         return [t for t in self.transactions if t.category.lower() == category_name.lower()]
+    
+    def delete_transaction(self, index: int) -> Transaction:
+        """Removes and returns a transaction at a given list index position."""
+        # .pop() removes an item from a specific index and returns it
+        return self.transactions.pop(index)
+    
+    def purge_all_transactions(self):
+        """Completely empties the transaction ledger memory."""
+        self.transactions.clear()

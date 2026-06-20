@@ -25,9 +25,10 @@ def main():
         print("6. Set Category Budget Limit")
         print("7. Filter Activity Stream by Category")
         print("8. Export Statement to Text File")
+        print("9. Purge/Delete Transaction Entry")
 
         
-        choice = input("\nSelect menu option (1-5): ").strip()
+        choice = input("\nSelect menu option (1-9): ").strip()
         
         if choice == "1":
             amount = get_validated_float("Enter incoming revenue amount ($): ")
@@ -48,8 +49,8 @@ def main():
             if not manager.transactions:
                 print("No transactions currently documented in session ledger.")
             else:
-                for tx in manager.transactions:
-                    print(tx.get_details())
+                for index, tx in enumerate(manager.transactions):
+                    print(f"Index [{index}] -> {tx.get_details()}")
                     
         elif choice == "4":
             summary = manager.get_summary()
@@ -96,9 +97,48 @@ def main():
             StorageEngine.export_text_report(manager, report_path)
             
             print(f"Success! Statement exported cleanly to: '{report_path}'")
+
+        elif choice == "9":
+            print("\n--- Ledger Deletion Controls ---")
+            if not manager.transactions:
+                print("The ledger stream is currently empty. Nothing to delete.")
+                continue
+            
+            print("1. Delete a specific entry by Index")
+            print("2. WIPE ALL LEDGER DATA (Global Reset)")
+            sub_choice = input("Select deletion type (1-2): ").strip()
+            
+            if sub_choice == "1":
+                try:
+                    # Ask the user for the index number
+                    target_idx = int(input("Enter the exact Index number to delete: ").strip())
+                    
+                    # Execute single deletion sequence
+                    removed_tx = manager.delete_transaction(target_idx)
+                    print(f"Successfully purged entry: {removed_tx.get_details()}")
+                    StorageEngine.save_data(manager, DATA_FILE)
+
+                except ValueError:
+                    print("Invalid format. Please input numerical integer digits only.")
+                except IndexError:
+                    print("Error: That index position does not exist in memory. Out of bounds.")
+            
+            elif sub_choice == "2":
+                print("\n⚠️ ⚠️ ⚠️  WARNING: This will permanently delete all records in this session!")
+                confirm = input("Are you absolutely sure? Type 'Y' to confirm: ").strip().upper()
+                
+                if confirm == "Y":
+                    manager.purge_all_transactions()
+                    print("Database reset successful. The ledger is now completely empty.")
+                    StorageEngine.save_data(manager, DATA_FILE)
+                else:
+                    print("Global purge operation cancelled safely.")
+            
+            else:
+                print("Invalid selection. Returning to Main Controls.")
             
         else:
-            print("Action invalid. Please match selection arguments to the explicit indexes provided (1-5).")
+            print("Action invalid. Please match selection arguments to the explicit indexes provided (1-9).")
 
 if __name__ == "__main__":
     main()
